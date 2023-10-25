@@ -5,5 +5,5 @@ using Clean.Architecture.Core.PersonAggregate;
 namespace Clean.Architecture.Core.Interfaces;
 public interface IUpdatePersonService
 {
-  public Task<Result> UpdatePerson(Person person);
+  public Task<Result> UpdatePerson(int personId, Person person);
 }

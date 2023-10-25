@@ -17,9 +17,9 @@ public class UpdatePersonService : IUpdatePersonService
     _repository = repository;
     _mediator = mediator;
   }
-  public async Task<Result> UpdatePerson(Person person)
+  public async Task<Result> UpdatePerson(int personId, Person person)
   {
-    var aggregateToUpdate = await _repository.GetByIdAsync(person.Id);
+    var aggregateToUpdate = await _repository.GetByIdAsync(personId);
     if (aggregateToUpdate == null) return Result.NotFound();
     aggregateToUpdate.UpdateName(person.FirstName, person.LastName);
     aggregateToUpdate.UpdateAddress(person.Address);

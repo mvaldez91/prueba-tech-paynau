@@ -14,13 +14,15 @@ internal class PersonAggregateHelper
   public static readonly string _state = "GT";
   public static readonly string _zipCode = "01004";
 
-  public static Person CreatePerson()
+  public static Person CreatePerson(int id)
   {
-    return new Person(firstName: _firstName,
+    var person = new Person(firstName: _firstName,
                       lastName: _lastName,
                       email: _email,
                       phoneNumber: _phoneNumber,
                       address: new Address(_street, _city, _state, _zipCode));
+    person.Id = id;
+    return person;
 
   }
 

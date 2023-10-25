@@ -34,7 +34,7 @@ public class DeletePersonService_DeletePerson
   [Fact]
   public async Task ShouldDeletePerson()
   {
-    var testPerson = await _repository.AddAsync(PersonAggregateHelper.CreatePerson());
+    var testPerson = await _repository.AddAsync(PersonAggregateHelper.CreatePerson(1));
     var result =await _service.DeletePerson(testPerson.Id);
     Assert.Equal(Ardalis.Result.ResultStatus.Ok, result.Status);
   }

@@ -21,7 +21,7 @@ public class CreatePersonService_CreatePerson
   [Fact]
   public async Task ShouldCreatePerson()
   {
-    var result = await _service.CreatePerson(PersonAggregateHelper.CreatePerson());
+    var result = await _service.CreatePerson(PersonAggregateHelper.CreatePerson(1));
     Assert.True(result.IsSuccess);
   }
 

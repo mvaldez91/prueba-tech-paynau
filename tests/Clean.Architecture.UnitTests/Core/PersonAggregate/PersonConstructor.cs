@@ -11,7 +11,7 @@ public class PersonConstructor
   [Fact]
   public void ShouldCreatePerson()
   {
-    var person = PersonAggregateHelper.CreatePerson();
+    var person = PersonAggregateHelper.CreatePerson(1);
 
     Assert.Equal(PersonAggregateHelper._firstName, person.FirstName);
     Assert.Equal(PersonAggregateHelper._lastName, person.LastName);
@@ -27,7 +27,7 @@ public class PersonConstructor
   [Fact]
   public void ShouldUpdateName()
   {
-    var person = PersonAggregateHelper.CreatePerson();
+    var person = PersonAggregateHelper.CreatePerson(1);
     var newFirstName = "Jane";
     var newLastName = "Doe";
 
@@ -40,7 +40,7 @@ public class PersonConstructor
   [Fact]
   public void ShouldUpdateContactInfo()
   {
-    var person = PersonAggregateHelper.CreatePerson();
+    var person = PersonAggregateHelper.CreatePerson(1);
     var newEmail = "demo2@email.com";
     var newPhoneNumber = "0987654321";
     person.UpdateContactInfo(newEmail, newPhoneNumber);
@@ -51,7 +51,7 @@ public class PersonConstructor
   [Fact]
   public void ShouldUpdateAddres()
   {
-    var person = PersonAggregateHelper.CreatePerson();
+    var person = PersonAggregateHelper.CreatePerson(1);
     var newStreet = "Quinta Vergara";
     var newCity = "Chile";
     var newState = "ES";
@@ -65,7 +65,7 @@ public class PersonConstructor
   [Fact]
   public void ShouldChangeStatus()
   {
-    var person = PersonAggregateHelper.CreatePerson();
+    var person = PersonAggregateHelper.CreatePerson(1);
     var newState = PersonStatus.Disabled;
     person.UpdateStatus(newState);
     Assert.Equal(newState, person.Status);

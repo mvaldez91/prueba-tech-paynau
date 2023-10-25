@@ -25,22 +25,22 @@ public class UpdatePersonService_UpdatePerson
 
   public async Task ReturnsNotFoundGivenCantFindPerson()
   {
-    var person = PersonAggregateHelper.CreatePerson();
-    var result = await _service.UpdatePerson(person);
+    var person = PersonAggregateHelper.CreatePerson(1);
+    var result = await _service.UpdatePerson(person.Id, person);
     Assert.Equal(Ardalis.Result.ResultStatus.NotFound, result.Status);
   }
 
   [Fact]
   public async Task ShouldUpdatePerson()
   {
-    var newPerson = PersonAggregateHelper.CreatePerson();
+    var newPerson = PersonAggregateHelper.CreatePerson(1);
     var createdPerson = await _repository.AddAsync(newPerson);
 
     var personToUpdate = await _repository.GetByIdAsync(createdPerson.Id);
     if (personToUpdate != null)
     {
       personToUpdate.UpdateName("New Name", "New Last Name");
-      var result = await _service.UpdatePerson(personToUpdate);
+      var result = await _service.UpdatePerson(createdPerson.Id, personToUpdate);
       Assert.True(result.IsSuccess);
     }
   }

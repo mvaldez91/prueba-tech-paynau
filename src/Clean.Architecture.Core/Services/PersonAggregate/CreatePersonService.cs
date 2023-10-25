@@ -17,10 +17,10 @@ public class CreatePersonService : ICreatePersonService
     _repository = repository;
     _mediator = mediator;
   }
-  public async Task<Result> CreatePerson(Person person)
+  public async Task<Result<int>> CreatePerson(Person person)
   {
-     await _repository.AddAsync(person);
+    var result = await _repository.AddAsync(person);
      await _mediator.Publish(new PersonCreatedEvent(person));
-    return Result.Success();
+    return Result.Success(result.Id);
   }
 }
