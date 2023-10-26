@@ -31,7 +31,7 @@ public class CreatePersonHandlerHandle
       PersonAggregateHelper._phoneNumber,
       PersonAggregateHelper._street,
       PersonAggregateHelper._city,
-      PersonAggregateHelper._state,
+      PersonAggregateHelper._country,
       PersonAggregateHelper._zipCode
       ), CancellationToken.None);
 

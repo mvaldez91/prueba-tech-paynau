@@ -1,7 +1,7 @@
 ﻿
 using Ardalis.GuardClauses;
 using Ardalis.SharedKernel;
-using Clean.Architecture.Core.Common;
+
 
 namespace Clean.Architecture.Core.PersonAggregate;
 public class Person : EntityBase, IAggregateRoot
@@ -10,7 +10,11 @@ public class Person : EntityBase, IAggregateRoot
   public string LastName { get; private set; }
   public string Email { get; private set; }
   public string PhoneNumber { get; private set; }
-  public Address Address { get; private set; }
+  public string Street { get; private set; }
+  public string City { get; private set; }
+  public string Country { get; private set; }
+  public string ZipCode { get; private set; }
+
 
   public string FullName { get
     {
@@ -23,13 +27,21 @@ public class Person : EntityBase, IAggregateRoot
                 string lastName, 
                 string email, 
                 string phoneNumber, 
-                Address address)
+                string country,
+                string city,
+                string street,
+                string zipCode)
   {
     FirstName = Guard.Against.NullOrEmpty(firstName);
     LastName = Guard.Against.NullOrEmpty(lastName);
     Email = Guard.Against.NullOrEmpty(email);
     PhoneNumber = Guard.Against.NullOrEmpty(phoneNumber);
-    Address = Guard.Against.Null(address);
+    Country = Guard.Against.NullOrEmpty(country);
+    City = Guard.Against.NullOrEmpty(city);
+    Street = Guard.Against.NullOrEmpty(street); 
+    ZipCode = Guard.Against.NullOrEmpty(zipCode);
+
+
   }
   public void UpdateName(string firstName, string lastName)
   {
@@ -41,9 +53,12 @@ public class Person : EntityBase, IAggregateRoot
     Email = Guard.Against.NullOrEmpty(email);
     PhoneNumber = Guard.Against.NullOrEmpty(phoneNumber);
   }
-  public void UpdateAddress(Address address)
+  public void UpdateAddress(string country, string city,string street, string zipCode)
   {
-    Address = Guard.Against.Null(address);
+    Country = Guard.Against.NullOrEmpty(country);
+    City = Guard.Against.NullOrEmpty(city);
+    Street = Guard.Against.NullOrEmpty(street);
+    ZipCode = Guard.Against.NullOrEmpty(zipCode);
   }
   public void UpdateStatus(PersonStatus status)
   {

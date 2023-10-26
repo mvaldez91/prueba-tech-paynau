@@ -26,9 +26,9 @@ public class GetPersonHandler : IQueryHandler<GetPersonQuery, Result<PersonDTO>>
       LastName: entity.LastName,
       Email: entity.Email,
       PhoneNumber: entity.PhoneNumber,
-      Street: entity.Address.Street, 
-      City: entity.Address.City, 
-      State: entity.Address.State,
-      ZipCode: entity.Address.ZipCode);   
+      Street: entity.Street, 
+      City: entity.City, 
+      Country: entity.Country,
+      ZipCode: entity.ZipCode);   
   }
 }

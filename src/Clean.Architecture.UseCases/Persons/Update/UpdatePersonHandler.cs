@@ -18,11 +18,10 @@ public class UpdatePersonHandler : ICommandHandler<UpdatePersonCommand, Result<P
                              request.NewLastName,
                              request.NewEmail,
                              request.NewPhoneNumber,
-                             new Core.Common.Address(request.NewStreet,
-                                                     request.NewCity,
-                                                     request.NewState,
-                                                     request.NewZipCode)
-                             );
+                             request.NewStreet,
+                             request.NewCity,
+                             request.NewState,
+                             request.NewZipCode);
 
     var result =await _updatePersonService.UpdatePerson(request.PersonId, updatedPerson);
     if (result.IsSuccess)
@@ -32,10 +31,10 @@ public class UpdatePersonHandler : ICommandHandler<UpdatePersonCommand, Result<P
                                         updatedPerson.LastName,
                                         updatedPerson.Email,
                                         updatedPerson.PhoneNumber,
-                                        updatedPerson.Address.Street,
-                                        updatedPerson.Address.City,
-                                        updatedPerson.Address.State,
-                                        updatedPerson.Address.ZipCode));
+                                        updatedPerson.Street,
+                                        updatedPerson.City,
+                                        updatedPerson.Country,
+                                        updatedPerson.ZipCode));
     }
     
     return result;

@@ -19,11 +19,10 @@ public class CreatePersonHandler : ICommandHandler<CreatePersonCommand, Result<i
                                request.LastName, 
                                request.Email, 
                                request.PhoneNumber,
-                               new Core.Common.Address(request.Street, 
-                                                       request.City, 
-                                                       request.State, 
-                                                       request.ZipCode)
-                               );
+                               request.Street, 
+                               request.City, 
+                               request.State, 
+                               request.ZipCode);
     
     var result = await _createPersonService.CreatePerson(newPerson);
     return result.Value;

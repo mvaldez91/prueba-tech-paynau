@@ -6,5 +6,5 @@ public record PersonDTO(int Id,
                         string PhoneNumber, 
                         string Street, 
                         string City, 
-                        string State, 
+                        string Country, 
                         string ZipCode);

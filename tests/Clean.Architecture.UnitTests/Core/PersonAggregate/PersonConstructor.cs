@@ -1,5 +1,4 @@
 ﻿
-using Clean.Architecture.Core.Common;
 using Clean.Architecture.Core.PersonAggregate;
 using Xunit;
 
@@ -17,10 +16,10 @@ public class PersonConstructor
     Assert.Equal(PersonAggregateHelper._lastName, person.LastName);
     Assert.Equal(PersonAggregateHelper._email, person.Email);
     Assert.Equal(PersonAggregateHelper._phoneNumber, person.PhoneNumber);
-    Assert.Equal(PersonAggregateHelper._street, person.Address.Street);
-    Assert.Equal(PersonAggregateHelper._city, person.Address.City);
-    Assert.Equal(PersonAggregateHelper._state, person.Address.State);
-    Assert.Equal(PersonAggregateHelper._zipCode, person.Address.ZipCode);
+    Assert.Equal(PersonAggregateHelper._street, person.Street);
+    Assert.Equal(PersonAggregateHelper._city, person.City);
+    Assert.Equal(PersonAggregateHelper._country, person.Country);
+    Assert.Equal(PersonAggregateHelper._zipCode, person.ZipCode);
     Assert.Equal(PersonStatus.Enabled, person.Status);
   }
 
@@ -54,20 +53,23 @@ public class PersonConstructor
     var person = PersonAggregateHelper.CreatePerson(1);
     var newStreet = "Quinta Vergara";
     var newCity = "Chile";
-    var newState = "ES";
+    var newCountry = "ES";
     var newZipCode = "040102";
-    person.UpdateAddress(new Address(newStreet,newCity, newState, newZipCode));
-    Assert.Equal(newStreet, person.Address.Street);
-    Assert.Equal(newCity, person.Address.City);
-    Assert.Equal(newState, person.Address.State);
-    Assert.Equal(newZipCode, person.Address.ZipCode);
+    person.UpdateAddress(country: newCountry,
+                         city:newCity,
+                         street: newStreet,
+                         zipCode: newZipCode);
+    Assert.Equal(newStreet, person.Street);
+    Assert.Equal(newCity, person.City);
+    Assert.Equal(newCountry, person.Country);
+    Assert.Equal(newZipCode, person.ZipCode);
   }
   [Fact]
   public void ShouldChangeStatus()
   {
     var person = PersonAggregateHelper.CreatePerson(1);
-    var newState = PersonStatus.Disabled;
-    person.UpdateStatus(newState);
-    Assert.Equal(newState, person.Status);
+    var newCountry = PersonStatus.Disabled;
+    person.UpdateStatus(newCountry);
+    Assert.Equal(newCountry, person.Status);
   }
 }

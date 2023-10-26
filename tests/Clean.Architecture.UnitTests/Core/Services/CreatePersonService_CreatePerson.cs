@@ -9,7 +9,7 @@ using Xunit;
 namespace Clean.Architecture.UnitTests.Core.Services;
 public class CreatePersonService_CreatePerson
 {
-  private readonly IRepository<Person> _repository = Substitute.For<IRepository<Person>>();
+  private readonly IRepository<Person> _repository = Helpers.RepositoryHelpers.PersonRepositoryHelper.GetRepository();
   private readonly IMediator _mediator = Substitute.For<IMediator>();
   
   private readonly CreatePersonService _service;

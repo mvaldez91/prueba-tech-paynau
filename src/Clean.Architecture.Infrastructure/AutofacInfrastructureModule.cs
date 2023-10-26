@@ -8,6 +8,7 @@ using Clean.Architecture.Infrastructure.Data.Queries;
 using Clean.Architecture.Infrastructure.Email;
 using Clean.Architecture.UseCases.Contributors.Create;
 using Clean.Architecture.UseCases.Contributors.List;
+using Clean.Architecture.UseCases.Persons.List;
 using MediatR;
 using MediatR.Pipeline;
 using Module = Autofac.Module;
@@ -129,9 +130,8 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterType<SmtpEmailSender>().As<IEmailSender>()
       .InstancePerLifetimeScope();
 
-    builder.RegisterType<ListContributorsQueryService>()
-      .As<IListContributorsQueryService>()
-      .InstancePerLifetimeScope();
+    builder.RegisterType<ListContributorsQueryService>().As<IListContributorsQueryService>().InstancePerLifetimeScope();
+    builder.RegisterType<ListPersonsQueryService>().As<IListPersonsQueryService>().InstancePerLifetimeScope();
 
   }
 }

@@ -21,7 +21,7 @@ public class ListPersonsHandlerHandle
                      PhoneNumber: PersonAggregateHelper._phoneNumber, 
                      Street: PersonAggregateHelper._street,
                      City: PersonAggregateHelper._city,
-                     State: PersonAggregateHelper._state, 
+                     Country: PersonAggregateHelper._country, 
                      ZipCode: PersonAggregateHelper._zipCode)
     });
     _listPersonsHandler = new ListPersonsHandler(_listPersonsQueryService);

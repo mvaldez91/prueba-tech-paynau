@@ -12,14 +12,10 @@ public class DefaultCoreModule : Module
 {
   protected override void Load(ContainerBuilder builder)
   {
-    builder.RegisterType<DeleteContributorService>()
-        .As<IDeleteContributorService>().InstancePerLifetimeScope();
-    builder.RegisterType<IDeletePersonService>()
-    .As<DeletePersonService>().InstancePerLifetimeScope();
-    builder.RegisterType<ICreatePersonService>()
-    .As<CreatePersonService>().InstancePerLifetimeScope();
-    builder.RegisterType<IUpdatePersonService>()
-    .As<UpdatePersonService>().InstancePerLifetimeScope();
+    builder.RegisterType<DeleteContributorService>().As<IDeleteContributorService>().InstancePerLifetimeScope();
+    builder.RegisterType<DeletePersonService>().As<IDeletePersonService>().InstancePerLifetimeScope();
+    builder.RegisterType<CreatePersonService>().As<ICreatePersonService>().InstancePerLifetimeScope();
+    builder.RegisterType<UpdatePersonService>().As<IUpdatePersonService>().InstancePerLifetimeScope();
     
   }
 }

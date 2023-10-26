@@ -22,7 +22,7 @@ public class UpdatePersonService : IUpdatePersonService
     var aggregateToUpdate = await _repository.GetByIdAsync(personId);
     if (aggregateToUpdate == null) return Result.NotFound();
     aggregateToUpdate.UpdateName(person.FirstName, person.LastName);
-    aggregateToUpdate.UpdateAddress(person.Address);
+    aggregateToUpdate.UpdateAddress(person.Country, person.City, person.Street, person.ZipCode);
     aggregateToUpdate.UpdateContactInfo(person.Email, person.PhoneNumber);
 
     await _repository.UpdateAsync(aggregateToUpdate);
