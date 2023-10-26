@@ -7,5 +7,5 @@ public record CreatePersonCommand(string FirstName,
                                  string PhoneNumber, 
                                  string Street, 
                                  string City, 
-                                 string State, 
+                                 string Country, 
                                  string ZipCode) : Ardalis.SharedKernel.ICommand<Result<int>>;

@@ -21,7 +21,7 @@ public class CreatePersonHandler : ICommandHandler<CreatePersonCommand, Result<i
                                request.PhoneNumber,
                                request.Street, 
                                request.City, 
-                               request.State, 
+                               request.Country, 
                                request.ZipCode);
     
     var result = await _createPersonService.CreatePerson(newPerson);

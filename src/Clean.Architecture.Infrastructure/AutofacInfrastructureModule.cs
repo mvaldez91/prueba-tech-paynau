@@ -121,6 +121,7 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterType<FakeListContributorsQueryService>()
       .As<IListContributorsQueryService>()
       .InstancePerLifetimeScope();
+    builder.RegisterType<ListPersonsQueryService>().As<IListPersonsQueryService>().InstancePerLifetimeScope();
 
   }
 

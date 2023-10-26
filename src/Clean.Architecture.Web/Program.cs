@@ -23,9 +23,9 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
   options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
-string? connectionString = builder.Configuration.GetConnectionString("SqliteConnection");
+string? connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION");
 builder.Services.AddDbContext<AppDbContext>(options =>
-          options.UseSqlite(connectionString));
+          options.UseMySQL(connectionString!));
 
 builder.Services.AddFastEndpoints();
 //builder.Services.AddFastEndpointsApiExplorer();
@@ -51,7 +51,18 @@ builder.Services.Configure<ServiceConfig>(config =>
   // optional - default path to view services is /listallservices - recommended to choose your own path
   config.Path = "/listservices";
 });
+var allowedOrigin = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
 
+// Add services to the container.
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("react_app_cors", policy =>
+  {
+    policy.WithOrigins(allowedOrigin!)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+  });
+});
 
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 {
@@ -97,6 +108,7 @@ using (var scope = app.Services.CreateScope())
     logger.LogError(ex, "An error occurred seeding the DB. {exceptionMessage}", ex.Message);
   }
 }
+
 
 app.Run();
 
