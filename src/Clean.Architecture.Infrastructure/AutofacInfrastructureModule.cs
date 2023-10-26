@@ -1,13 +1,12 @@
 ﻿using System.Reflection;
 using Ardalis.SharedKernel;
 using Autofac;
-using Clean.Architecture.Core.ContributorAggregate;
 using Clean.Architecture.Core.Interfaces;
+using Clean.Architecture.Core.PersonAggregate;
 using Clean.Architecture.Infrastructure.Data;
 using Clean.Architecture.Infrastructure.Data.Queries;
 using Clean.Architecture.Infrastructure.Email;
-using Clean.Architecture.UseCases.Contributors.Create;
-using Clean.Architecture.UseCases.Contributors.List;
+using Clean.Architecture.UseCases.Persons.Create;
 using Clean.Architecture.UseCases.Persons.List;
 using MediatR;
 using MediatR.Pipeline;
@@ -41,9 +40,9 @@ public class AutofacInfrastructureModule : Module
   private void LoadAssemblies()
   {
     // TODO: Replace these types with any type in the appropriate assembly/project
-    var coreAssembly = Assembly.GetAssembly(typeof(Contributor));
+    var coreAssembly = Assembly.GetAssembly(typeof(Person));
     var infrastructureAssembly = Assembly.GetAssembly(typeof(AutofacInfrastructureModule));
-    var useCasesAssembly = Assembly.GetAssembly(typeof(CreateContributorCommand));
+    var useCasesAssembly = Assembly.GetAssembly(typeof(CreatePersonCommand));
 
     AddToAssembliesIfNotNull(coreAssembly);
     AddToAssembliesIfNotNull(infrastructureAssembly);
@@ -118,9 +117,7 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterType<FakeEmailSender>().As<IEmailSender>()
       .InstancePerLifetimeScope();
 
-    builder.RegisterType<FakeListContributorsQueryService>()
-      .As<IListContributorsQueryService>()
-      .InstancePerLifetimeScope();
+
     builder.RegisterType<ListPersonsQueryService>().As<IListPersonsQueryService>().InstancePerLifetimeScope();
 
   }
@@ -131,7 +128,6 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterType<SmtpEmailSender>().As<IEmailSender>()
       .InstancePerLifetimeScope();
 
-    builder.RegisterType<ListContributorsQueryService>().As<IListContributorsQueryService>().InstancePerLifetimeScope();
     builder.RegisterType<ListPersonsQueryService>().As<IListPersonsQueryService>().InstancePerLifetimeScope();
 
   }

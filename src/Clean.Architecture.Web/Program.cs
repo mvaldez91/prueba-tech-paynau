@@ -51,6 +51,7 @@ builder.Services.Configure<ServiceConfig>(config =>
   // optional - default path to view services is /listallservices - recommended to choose your own path
   config.Path = "/listservices";
 });
+
 var allowedOrigin = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
 
 // Add services to the container.
@@ -72,6 +73,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 
 var app = builder.Build();
 
+app.UseCors("react_app_cors");
 if (app.Environment.IsDevelopment())
 {
   app.UseDeveloperExceptionPage();
@@ -100,7 +102,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<AppDbContext>();
     //                    context.Database.Migrate();
     context.Database.EnsureCreated();
-    SeedData.Initialize(services);
+    //SeedData.Initialize(services);
   }
   catch (Exception ex)
   {

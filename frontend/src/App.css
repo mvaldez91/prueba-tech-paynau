@@ -1,0 +1,3 @@
+body.modal-open {
+  overflow: hidden; /* see "modal-open" in Modal.tsx */
+}

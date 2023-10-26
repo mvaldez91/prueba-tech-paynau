@@ -1,10 +1,6 @@
 ﻿using System.Reflection;
 using Ardalis.SharedKernel;
-using Clean.Architecture.Core.Common;
-using Clean.Architecture.Core.ContributorAggregate;
 using Clean.Architecture.Core.PersonAggregate;
-using Clean.Architecture.Infrastructure.Data.Config;
-using Clean.Architecture.Infrastructure.Data.Config.PersonEntity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clean.Architecture.Infrastructure.Data;
@@ -20,7 +16,6 @@ public class AppDbContext : DbContext
     _dispatcher = dispatcher;
   }
 
-  public DbSet<Contributor> Contributors => Set<Contributor>();
   public DbSet<Person> Persons => Set<Person>();
   
 
