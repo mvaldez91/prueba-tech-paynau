@@ -17,5 +17,5 @@ server=NOMBRE_SERVIDOR;Database=person_db;Uid=NOMBRE_USUARIO;Pwd=CONTRASENA_USUA
 2. asegurarse de contar con Node JS instalado (el proyecto fue creado con Node 20)
 3. correr npm install
 4. crear el archivo .env.local con la variable de entorno VITE_API_URL=http://localhost:57678
-5. correr vite
+5. correr npm run dev
 

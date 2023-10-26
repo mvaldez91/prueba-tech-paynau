@@ -37,7 +37,8 @@ const DialogModal = ({
   onProceed,
   onClose,
   children,
-  confirmText
+  confirmText,
+  onSubmit
 }) => {
   const ref = useRef(null);
 
@@ -66,12 +67,16 @@ const DialogModal = ({
     >
       <h4><b>{title}</b></h4>
 
-      {children}
-
-      <Buttons>
-        <button onClick={proceedAndClose}>{confirmText}</button>
-        <button onClick={onClose}>Cerrar</button>
-      </Buttons>
+      <form onSubmit={onSubmit}>
+        {children}
+        <Buttons className="w3-padding">
+          <button className="w3-button w3-indigo" type="submit">{confirmText}</button>
+          <button className="w3-button w3-red" onClick={(e)=>{
+            e.preventDefault()
+            onClose()
+          }}>Close</button>
+        </Buttons>
+      </form>
     </Container>
   );
 };
